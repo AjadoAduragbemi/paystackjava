@@ -5,14 +5,14 @@ import com.payments.paystack.PaystackService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class TransactionService extends PaystackService<TransactionAPI> {
+public class TransactionService extends PaystackService<TransactionsInterface> {
     private static TransactionService instance;
-    private TransactionAPI serviceAPI;
+    private TransactionsInterface serviceApi;
 
     private TransactionService() {
-        final Retrofit retrofit = new Retrofit.Builder().baseUrl(TransactionAPI.baseUrl)
+        final Retrofit retrofit = new Retrofit.Builder().baseUrl(TransactionsInterface.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create()).client(getHttpClient()).build();
-        serviceAPI = retrofit.create(TransactionAPI.class);
+        serviceApi = retrofit.create(TransactionsInterface.class);
     }
 
     static {
@@ -28,7 +28,7 @@ public class TransactionService extends PaystackService<TransactionAPI> {
     }
 
     @Override
-    public final TransactionAPI getServiceAPI() {
-        return serviceAPI;
+    public final TransactionsInterface getServiceApi() {
+        return serviceApi;
     }
 }

@@ -21,11 +21,12 @@ public abstract class PaystackService<T> {
         return resultCallback;
     }
 
-    public abstract T getServiceAPI();
+    public abstract T getServiceApi();
 
     protected final OkHttpClient getHttpClient() {
-        return new OkHttpClient.Builder().readTimeout(180, TimeUnit.SECONDS).writeTimeout(180, TimeUnit.SECONDS)
-                .connectTimeout(180, TimeUnit.SECONDS).addInterceptor(new Interceptor() {
+        return new OkHttpClient.Builder().readTimeout(PaystackSetup.getReadTimeout(), TimeUnit.SECONDS)
+                .writeTimeout(PaystackSetup.getWriteTimeout(), TimeUnit.SECONDS)
+                .connectTimeout(PaystackSetup.getConnectTimeout(), TimeUnit.SECONDS).addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         String authToken = PaystackSetup.getAuthToken();
