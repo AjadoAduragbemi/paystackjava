@@ -1,6 +1,6 @@
 package com.payments.paystack.transactions;
 
-public class TransactionData {
+public class InitializeResponseData {
     private String authorization_url, access_code, reference;
 
     public String getAuthorizationUrl() {

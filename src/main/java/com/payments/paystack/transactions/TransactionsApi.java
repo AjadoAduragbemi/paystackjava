@@ -27,5 +27,23 @@ public class TransactionsApi implements TransactionsInterface {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public Call<ChargeAuthorizationResponse> chargeAuthorization(String authorizationCode, String email, long amount) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Call<ChargeAuthorizationResponse> checkAuthorization(String authorizationCode, String email, long amount) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Call<ChargeAuthorizationResponse> deactivateAuthorization(String authorizationCode) {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }

@@ -1,14 +1,44 @@
 package com.payments.paystack.transactions;
 
-import com.google.gson.Gson;
-
-public class VerifyData {
+public class VerifyResponseData {
     private int id;
     private String domain, status, reference;
     private long amount;
     private String message, gateway_response, paid_at, created_at, channel, currency, ip_address;
-    private String metadata;
-    private String log, fees;
+    private Metadata metadata;
+    private Log log;
+    private Fees fees;
+    private Authorization authorization;
+    private Customer customer;
+    private String plan;
+
+    public String getGateway_response() {
+        return this.gateway_response;
+    }
+
+    public String getPaid_at() {
+        return this.paid_at;
+    }
+
+    public String getCreated_at() {
+        return this.created_at;
+    }
+
+    public String getIp_address() {
+        return this.ip_address;
+    }
+
+    public Authorization getAuthorization() {
+        return this.authorization;
+    }
+
+    public Customer getCustomer() {
+        return this.customer;
+    }
+
+    public String getPlan() {
+        return this.plan;
+    }
 
     public int getId() {
         return this.id;
@@ -59,7 +89,7 @@ public class VerifyData {
     }
 
     public Metadata getMetadata() {
-        return this.metadata.isEmpty() ? null : new Gson().fromJson(this.metadata, Metadata.class);
+        return this.metadata;//.isEmpty() ? null : new Gson().fromJson(this.metadata, Metadata.class);
     }
 
     public Object getLog() {

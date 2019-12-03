@@ -1,5 +1,9 @@
 package com.payments.paystack.transactions;
 
-public class ListTransactionsResponse {
+import java.util.List;
+
+import com.payments.paystack.PaystackResponse;
+
+public class ListTransactionsResponse extends PaystackResponse<List<TransactionResponseData>> {
 
 }

@@ -4,11 +4,13 @@ import com.payments.paystack.Paystack;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface TransactionsInterface  {
+public interface TransactionsInterface {
 
 	static final String baseUrl = Paystack.baseUrl;
 
@@ -23,4 +25,22 @@ public interface TransactionsInterface  {
 
 	@GET(baseUrl + "transaction/{id}")
 	public Call<FetchTransactionResponse> fetchTransaction(@Path("id") int id);
+
+	@POST(baseUrl + "transaction/charge_authorization")
+	@FormUrlEncoded
+	public abstract Call<ChargeAuthorizationResponse> chargeAuthorization(
+			@Field("authorization_code") String authorizationCode, @Field("email") String email,
+			@Field("amount") long amount);
+
+	@POST(baseUrl + "transaction/check_authorization")
+	@FormUrlEncoded
+	public abstract Call<ChargeAuthorizationResponse> checkAuthorization(
+			@Field("authorization_code") String authorizationCode, @Field("email") String email,
+			@Field("amount") long amount);
+
+	@POST(baseUrl + "transaction/deactivate_authorization")
+	@FormUrlEncoded
+	public abstract Call<ChargeAuthorizationResponse> deactivateAuthorization(
+			@Field("authorization_code") String authorizationCode);
+
 }

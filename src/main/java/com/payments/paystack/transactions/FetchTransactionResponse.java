@@ -1,5 +1,7 @@
 package com.payments.paystack.transactions;
 
-public class FetchTransactionResponse {
+import com.payments.paystack.PaystackResponse;
+
+public class FetchTransactionResponse extends PaystackResponse<TransactionResponseData> {
 
 }
