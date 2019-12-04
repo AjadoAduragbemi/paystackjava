@@ -43,4 +43,13 @@ public interface TransactionsInterface {
 	public abstract Call<ChargeAuthorizationResponse> deactivateAuthorization(
 			@Field("authorization_code") String authorizationCode);
 
+	@GET(baseUrl + "transaction/timeline/{id_or_reference}")
+	public Call<TimelineResponse> timeline(@Path("id_or_reference") int id_or_reference);
+
+	@GET(baseUrl + "transaction/totals")
+	public Call<TotalsResponse> totals();
+
+	@GET(baseUrl + "transaction/export")
+	public Call<ExportResponse> export();
+
 }

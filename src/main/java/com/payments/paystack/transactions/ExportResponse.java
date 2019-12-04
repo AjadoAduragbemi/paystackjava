@@ -2,6 +2,6 @@ package com.payments.paystack.transactions;
 
 import com.payments.paystack.PaystackResponse;
 
-public class VerifyResponse extends PaystackResponse<TransactionData> {
+public class ExportResponse extends PaystackResponse<ExportResponseData> {
 
 }

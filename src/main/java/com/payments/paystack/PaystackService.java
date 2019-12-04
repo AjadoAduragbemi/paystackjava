@@ -36,6 +36,6 @@ public abstract class PaystackService<T> {
                         Response response = chain.proceed(newRequestBuilder.build());
                         return response;
                     }
-                }).build();
+                }).cache(null).build();
     }
 }

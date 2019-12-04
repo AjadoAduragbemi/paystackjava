@@ -6,13 +6,15 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.payments.paystack.transactions.CustomField;
 import com.payments.paystack.transactions.FetchTransactionResponse;
 import com.payments.paystack.transactions.InitializeRequest;
 import com.payments.paystack.transactions.InitializeResponse;
 import com.payments.paystack.transactions.ListTransactionsResponse;
 import com.payments.paystack.transactions.Metadata;
-import com.payments.paystack.transactions.TransactionResponseData;
+import com.payments.paystack.transactions.TransactionData;
 import com.payments.paystack.transactions.TransactionService;
 import com.payments.paystack.transactions.VerifyResponse;
 
@@ -23,8 +25,11 @@ import retrofit2.Response;
 
 public class TransactionApiTest {
 
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    
     private void setupToken() {
         PaystackSetup.setAuthToken("sk_test_02df9413ed474f26fd3e4ba3a2289cff3f6b39ba");
+        
     }
 
     @Test
@@ -71,9 +76,9 @@ public class TransactionApiTest {
         ListTransactionsResponse listTransactionsReponseBody = listTransactionsReponse.body();
         assertNotNull(listTransactionsReponseBody);
         assertTrue(listTransactionsReponseBody.getMessage(), listTransactionsReponseBody.getStatus());
-        List<TransactionResponseData> listTransactionsReponseData = listTransactionsReponseBody.getData();
+        List<TransactionData> listTransactionsReponseData = listTransactionsReponseBody.getData();
         assertTrue(listTransactionsReponseData.size() > 0);
-
+        System.out.println(gson.toJson(listTransactionsReponseData.get(0)));
         fetchTransactionTest(listTransactionsReponseData.get(0).getId());
     }
 
@@ -83,5 +88,6 @@ public class TransactionApiTest {
         assertNotNull(fetchTransactionReponse);
         FetchTransactionResponse fetchTransactionReponseBody = fetchTransactionReponse.body();
         assertNotNull(fetchTransactionReponseBody);
+        System.out.println(gson.toJson(fetchTransactionReponseBody));
     }
 }

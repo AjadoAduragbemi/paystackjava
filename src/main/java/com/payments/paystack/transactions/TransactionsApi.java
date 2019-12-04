@@ -45,5 +45,23 @@ public class TransactionsApi implements TransactionsInterface {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public Call<TimelineResponse> timeline(int id_or_reference) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Call<TotalsResponse> totals() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Call<ExportResponse> export() {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }

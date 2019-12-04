@@ -1,32 +1,25 @@
 package com.payments.paystack.transactions;
 
-public class VerifyResponseData {
+import java.util.Date;
+
+import com.google.gson.Gson;
+
+public class TransactionData {
     private int id;
     private String domain, status, reference;
     private long amount;
-    private String message, gateway_response, paid_at, created_at, channel, currency, ip_address;
+    private String message, gateway_response, channel, currency, ip_address;
     private Metadata metadata;
     private Log log;
-    private Fees fees;
+    private long fees;
+    private Object fees_split;
     private Authorization authorization;
     private Customer customer;
-    private String plan;
-
-    public String getGateway_response() {
-        return this.gateway_response;
-    }
-
-    public String getPaid_at() {
-        return this.paid_at;
-    }
-
-    public String getCreated_at() {
-        return this.created_at;
-    }
-
-    public String getIp_address() {
-        return this.ip_address;
-    }
+    private Object plan;
+    private String order_id;
+    private Date paid_at, created_at, transaction_date;
+    private Object plan_object;
+    private Subaccount subaccount;
 
     public Authorization getAuthorization() {
         return this.authorization;
@@ -36,7 +29,7 @@ public class VerifyResponseData {
         return this.customer;
     }
 
-    public String getPlan() {
+    public Object getPlan() {
         return this.plan;
     }
 
@@ -68,11 +61,11 @@ public class VerifyResponseData {
         return this.gateway_response;
     }
 
-    public String getPaidAt() {
+    public Date getPaidAt() {
         return this.paid_at;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return this.created_at;
     }
 
@@ -89,15 +82,38 @@ public class VerifyResponseData {
     }
 
     public Metadata getMetadata() {
-        return this.metadata;//.isEmpty() ? null : new Gson().fromJson(this.metadata, Metadata.class);
+        return this.metadata;
     }
 
-    public Object getLog() {
+    public Log getLog() {
         return this.log;
     }
 
-    public Object getFees() {
+    public long getFees() {
         return this.fees;
+    }
+
+    public FeesSplit getFeesSplit() {
+        // had to do this to fix the error i was getting from calling listTransactions
+        // apparently fees_split could be a string too 
+        return (fees_split instanceof FeesSplit) ? (FeesSplit) fees_split : 
+        new Gson().fromJson((String) fees_split, FeesSplit.class);
+    }
+
+    public String getOrderId() {
+        return this.order_id;
+    }
+
+    public Date getTransactionDate() {
+        return this.transaction_date;
+    }
+
+    public Object getPlanObject() {
+        return this.plan_object;
+    }
+
+    public Subaccount getSubaccount() {
+        return this.subaccount;
     }
 
 }

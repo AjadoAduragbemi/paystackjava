@@ -2,14 +2,16 @@ package com.payments.paystack.transactions;
 
 import java.util.List;
 
-class Log {
-    private int time_spent, attempts;
-    private Authentication authentication;
+public class Log {
+    private int start_time, time_spent, attempts;
     private int errors;
     private boolean success, mobile;
     private List<Object> input;
-    private Channel channel;
     private List<History> history;
+
+    public int getStartTime() {
+        return this.start_time;
+    }
 
     public int getTimeSpent() {
         return this.time_spent;
@@ -17,10 +19,6 @@ class Log {
 
     public int getAttempts() {
         return this.attempts;
-    }
-
-    public Authentication getAuthentication() {
-        return this.authentication;
     }
 
     public int getErrors() {
@@ -45,10 +43,6 @@ class Log {
 
     public List<Object> getInput() {
         return this.input;
-    }
-
-    public Channel getChannel() {
-        return this.channel;
     }
 
     public List<History> getHistory() {

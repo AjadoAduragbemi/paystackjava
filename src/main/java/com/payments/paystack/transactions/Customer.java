@@ -2,10 +2,15 @@ package com.payments.paystack.transactions;
 
 class Customer {
     private int id;
-    private String customer_code, first_name, last_name, email;
+    private String customer_code, first_name, last_name, email, phone, risk_action;
     private Metadata metadata;
 
-    private Customer() {
+    public String getRiskAction() {
+        return this.risk_action;
+    }
+
+    public String getPhone() {
+        return this.phone;
     }
 
     public Metadata getMetadata() {

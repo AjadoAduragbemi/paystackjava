@@ -1,6 +1,6 @@
 package com.payments.paystack;
 
-public class PaystackResponse<T> {
+public abstract class PaystackResponse<T> {
     private boolean status;
     private String message;
     private T data;

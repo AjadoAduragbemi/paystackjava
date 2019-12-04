@@ -1,8 +1,8 @@
 package com.payments.paystack.transactions;
 
 class Authorization {
-    private String authorization_code, bin, last4, exp_month, exp_year, channel, card_type, bank, country_code,
-            brand, signature;
+    private String authorization_code, bin, last4, exp_month, exp_year, channel, card_type;
+    private String bank, country_code, brand, signature;
     private boolean reusable;
 
     public String getAuthorizationCode() {
