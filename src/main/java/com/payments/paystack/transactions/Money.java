@@ -1,6 +1,6 @@
 package com.payments.paystack.transactions;
 
-class Money {
+public class Money {
     private String currency;
     private long amount;
 

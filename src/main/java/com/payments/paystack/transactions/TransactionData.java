@@ -9,7 +9,7 @@ public class TransactionData {
     private String domain, status, reference;
     private long amount;
     private String message, gateway_response, channel, currency, ip_address;
-    private Metadata metadata;
+    private Object metadata;
     private Log log;
     private long fees;
     private Object fees_split;
@@ -81,9 +81,6 @@ public class TransactionData {
         return this.ip_address;
     }
 
-    public Metadata getMetadata() {
-        return this.metadata;
-    }
 
     public Log getLog() {
         return this.log;
@@ -96,8 +93,14 @@ public class TransactionData {
     public FeesSplit getFeesSplit() {
         // had to do this to fix the error i was getting from calling listTransactions
         // apparently fees_split could be a string too 
-        return (fees_split instanceof FeesSplit) ? (FeesSplit) fees_split : 
-        new Gson().fromJson((String) fees_split, FeesSplit.class);
+        return (this.fees_split instanceof FeesSplit) ? (FeesSplit) this.fees_split : 
+        new Gson().fromJson((String) this.fees_split, FeesSplit.class);
+    }
+
+    public Metadata getMetadata() {
+        // same issue as FeesSplit
+        return (this.metadata instanceof Metadata) ? (Metadata) this.metadata : 
+        new Gson().fromJson((String) this.metadata, Metadata.class);
     }
 
     public String getOrderId() {

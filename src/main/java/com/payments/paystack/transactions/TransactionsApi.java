@@ -1,67 +1,55 @@
 package com.payments.paystack.transactions;
 
+import com.payments.paystack.Paystack;
+
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 
-public class TransactionsApi implements TransactionsInterface {
+public interface TransactionsApi {
 
-    @Override
-    public Call<InitializeResponse> initialize(InitializeRequest request) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	static final String baseUrl = Paystack.baseUrl;
 
-    @Override
-    public Call<VerifyResponse> verify(String reference) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@POST(baseUrl + "transaction/initialize")
+	public Call<InitializeResponse> initialize(@Body InitializeRequest request);
 
-    @Override
-    public Call<ListTransactionsResponse> listTransactions() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@GET(baseUrl + "transaction/verify/{reference}")
+	public Call<VerifyResponse> verify(@Path("reference") String reference);
 
-    @Override
-    public Call<FetchTransactionResponse> fetchTransaction(int id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@GET(baseUrl + "transaction")
+	public Call<ListTransactionsResponse> listTransactions();
 
-    @Override
-    public Call<ChargeAuthorizationResponse> chargeAuthorization(String authorizationCode, String email, long amount) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@GET(baseUrl + "transaction/{id}")
+	public Call<FetchTransactionResponse> fetchTransaction(@Path("id") int id);
 
-    @Override
-    public Call<ChargeAuthorizationResponse> checkAuthorization(String authorizationCode, String email, long amount) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@POST(baseUrl + "transaction/charge_authorization")
+	@FormUrlEncoded
+	public Call<ChargeAuthorizationResponse> chargeAuthorization(
+			@Field("authorization_code") String authorizationCode, @Field("email") String email,
+			@Field("amount") long amount);
 
-    @Override
-    public Call<ChargeAuthorizationResponse> deactivateAuthorization(String authorizationCode) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@POST(baseUrl + "transaction/check_authorization")
+	@FormUrlEncoded
+	public Call<CheckAuthorizationResponse> checkAuthorization(
+			@Field("authorization_code") String authorizationCode, @Field("email") String email,
+			@Field("amount") long amount);
 
-    @Override
-    public Call<TimelineResponse> timeline(int id_or_reference) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@POST(baseUrl + "transaction/deactivate_authorization")
+	@FormUrlEncoded
+	public Call<DeactivateAuthorizationResponse> deactivateAuthorization(
+			@Field("authorization_code") String authorizationCode);
 
-    @Override
-    public Call<TotalsResponse> totals() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@GET(baseUrl + "transaction/timeline/{id_or_reference}")
+	public Call<TimelineResponse> timeline(@Path("id_or_reference") String string);
 
-    @Override
-    public Call<ExportResponse> export() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
+	@GET(baseUrl + "transaction/totals")
+	public Call<TotalsResponse> totals();
+
+	@GET(baseUrl + "transaction/export")
+	public Call<ExportResponse> export();
+
 }

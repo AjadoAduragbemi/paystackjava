@@ -7,7 +7,7 @@ public class ChargeAuthorizationResponseData {
     private String currency;
     private Date transaction_date;
     private String status, reference, domain;
-    private Metadata metadata;
+    private Object metadata;
     private String gateway_response, message, channel, ip_address;
     private Object log;
     private Object fees;
@@ -39,7 +39,7 @@ public class ChargeAuthorizationResponseData {
         return this.domain;
     }
 
-    public Metadata getMetadata() {
+    public Object getMetadata() {
         return this.metadata;
     }
 
